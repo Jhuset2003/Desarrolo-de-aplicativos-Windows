@@ -1,6 +1,6 @@
 from turtle import Turtle
 
-STARTING_POSITION =[(0,0),(-20,0),(-40,0)]
+STARTING_POSITION =[(0,0),(30,0)]
 DISTANCE_MOVE = 10
 ARRIBA = 90
 ABAJO = 270
@@ -18,7 +18,7 @@ class Snake:
             self.add_segment(position)
     def add_segment(self,position):
         snake_segment = Turtle("square")
-        snake_segment.color("white")
+        snake_segment.color("green")
         snake_segment.penup()
         snake_segment.goto(position)
         self.segments.append(snake_segment)
@@ -32,7 +32,7 @@ class Snake:
             new_y = self.segments[seg_num - 1].ycor()
             self.segments[seg_num].goto(new_x, new_y)
             #self.segments[0].left(105)
-            self.cabeza.forward(DISTANCE_MOVE)
+        self.cabeza.forward(DISTANCE_MOVE)
     def Up(self):
         if self.cabeza.heading() != ABAJO:
             self.cabeza.setheading(ARRIBA)
