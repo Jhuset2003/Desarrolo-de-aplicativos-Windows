@@ -1,13 +1,13 @@
-##Juego de la serpiente hecho en Python
+## Juego de la serpiente hecho en Python
 
 
-#Desarrollado por: Albert Quintanilla 
-
-
-
-#Dorada-Caldas
+# Desarrollado por: Albert Quintanilla 
 
 
 
-#INCET
-#2020
+# Dorada-Caldas
+
+
+
+# INCET
+# 2020
