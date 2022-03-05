@@ -1,15 +1,41 @@
-from turtle import Screen,Turtle
+from turtle import Turtle
 
-screen = Screen()
-screen.setup(width=600, height=600)
-screen.bgcolor("black")
-screen.title("First Snake Game AJ")
+STARTING_POSITION =[(0,0),(-20,0),(-40,0)]
+DISTANCE_MOVE = 20
+ARRIBA = 90
+ABAJO = 270
+IZQUIERDA = 180
+DERECHA = 0
+class Snake:
+    def __init__(self):
+        self.segments = []
+        self.create_snake()
+        self.cabeza = self.segments[0]
 
-starting_position =[(0,0),(-20,0),(-40,0)]
 
-for position in starting_position:
-    snake_segment = Turtle("square")
-    snake_segment.color("white")
-    snake_segment.goto(position)
-
-screen.exitonclick()
+    def create_snake(self):
+        for position in STARTING_POSITION:
+            snake_segment = Turtle("square")
+            snake_segment.color("white")
+            snake_segment.penup()
+            snake_segment.goto(position)
+            self.segments.append(snake_segment)
+    def move(self):
+        for seg_num in range(len(self.segments)-1,0,-1):
+            new_x = self.segments[seg_num - 1].xcor()
+            new_y = self.segments[seg_num - 1].ycor()
+            self.segments[seg_num].goto(new_x, new_y)
+            #self.segments[0].left(105)
+            self.cabeza.forward(DISTANCE_MOVE)
+    def Up(self):
+        if self.cabeza.heading() != ABAJO:
+            self.cabeza.setheading(ARRIBA)
+    def Down(self):
+        if self.cabeza.heading() != ARRIBA:
+            self.cabeza.setheading(ABAJO)
+    def Left(self):
+        if self.cabeza.heading() != DERECHA:
+            self.cabeza.setheading(IZQUIERDA)
+    def Right(self):
+        if self.cabeza.heading() != IZQUIERDA:
+            self.cabeza.setheading(DERECHA)
