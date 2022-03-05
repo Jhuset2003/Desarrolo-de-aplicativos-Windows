@@ -2,6 +2,7 @@ from turtle import Screen
 import time
 from snake import Snake
 from food import Comida
+from ScoreBoard import Scoreboard
 
 
                   
@@ -12,6 +13,7 @@ screen.title("First Snake Game AJ")
 screen.tracer(0)
 
 serpiente = Snake()
+scoreboard = Scoreboard()
 comida = Comida()
 
 screen.listen()
@@ -29,9 +31,20 @@ while game_is_ready:
     serpiente.move()
 
 
-    if serpiente.cabeza.distance(comida) < 15:
+    if serpiente.cabeza.distance(comida) < 20:
         comida.refresh()
+        scoreboard.increment_score()
+        serpiente.extend()
 
+    if serpiente.cabeza.xcor() > 280 or serpiente.cabeza.xcor() < -280 or serpiente.cabeza.ycor() > 280 or serpiente.cabeza.ycor() < -280:
+        game_is_ready = False
+        scoreboard.game_over()
+    for segment in serpiente.segments:
+        if segment == serpiente.cabeza:
+            pass
+        elif serpiente.cabeza.distance(segment) < 10:
+            game_is_ready=False
+            scoreboard.game_over()
 
         
 
